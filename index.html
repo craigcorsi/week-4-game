@@ -27,35 +27,35 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-sm-8" id="mainLeftColumn">
                 <div id="selectACharacter">
                     <div id="selectCharHeader">
                         <h1>Select a character:</h1>
                     </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <img src="assets/images/amethyst.png" alt="Placeholder" class="img-thumbnail" id="characterAmethyst">
+                    <div class="row" id="removeOpponentsFromHere">
+                        <div class="col-sm-3">
+                            <img src="assets/images/amethyst.png" alt="Placeholder" class="img-thumbnail character" id="characterAmethyst" name="Amethyst">
                             <div id="amethystStats">
                                 <h3>Amethyst</h3>
                                 <p>Health: 140</p>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <img src="assets/images/garnet.png" alt="Placeholder" class="img-thumbnail" id="characterGarnet">
+                        <div class="col-sm-3">
+                            <img src="assets/images/garnet.png" alt="Placeholder" class="img-thumbnail character" id="characterGarnet" name="Garnet">
                             <div id="garnetStats">
                                 <h3>Garnet</h3>
                                 <p>Health: 210</p>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <img src="assets/images/pearl.png" alt="Placeholder" class="img-thumbnail" id="characterPearl">
+                        <div class="col-sm-3">
+                            <img src="assets/images/pearl.png" alt="Placeholder" class="img-thumbnail character" id="characterPearl" name="Pearl">
                             <div id="pearlStats">
                                 <h3>Pearl</h3>
                                 <p>Health: 170</p>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <img src="assets/images/steven.png" alt="Placeholder" class="img-thumbnail" id="characterSteven">
+                        <div class="col-sm-3">
+                            <img src="assets/images/steven.png" alt="Placeholder" class="img-thumbnail character" id="characterSteven" name="Steven">
                             <div id="garnetStats">
                                 <h3>Steven</h3>
                                 <p>Health: 100</p>
@@ -67,13 +67,13 @@
                     <div id="selectOppHeader">
                         <h1>Select an opponent:</h1>
                     </div>
-                    <div class="row">
+                    <div class="row" id="placeOpponentsHere">
                         <!-- Character images will go here when they are to be selected as opponents -->
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-sm-4" id="mainRightColumn">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">Current Game</h3>
@@ -100,7 +100,16 @@
                 </div>
             </div>
         </div>
-        <div class="jumbotron" id="battleGround">
+        <div class="container" id="battleGround">
+            <div class="btn-default" id="buttonAttack"> Attack! </div>
+            <div class="row">
+                <div class="col-sm-5">
+                    <!-- empty -->
+                </div>
+                <div class="col-sm-2" id="currentOpponentGoesHere">
+                    <!-- current oppponent goes here -->
+                </div>
+            </div>
         </div>
     </div>
 
