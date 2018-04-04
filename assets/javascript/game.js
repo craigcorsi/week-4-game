@@ -2,66 +2,70 @@
 
 TO DO LIST:
 
--Obtain square png files
--Finish CSS style
-
+-Finish CSS
+-Board game
 
 */
 
 currentGame = {
+    // Status booleans to allow or block execution of DOM manipulation
+
     gameInProgress: true,
     inBattle: false,
+
+    // Stats for the current battle
+
     currentHealth: '',
     currentAttack: '',
     playerBaseAttack: '',
     currentOpponentHealth: '',
     currentOpponentAttack: '',
 
+    // Character stats reference
+
     characterAmethyst: {
         name: 'Amethyst',
-        health: 140,
+        health: 120,
         attack: 8,
-        counterAttack: 10,
-        available: true
+        counterAttack: 12
     },
 
     characterGarnet: {
         name: 'Garnet',
-        health: 210,
-        attack: 4,
-        counterAttack: 20,
-        available: true
+        health: 180,
+        attack: 2,
+        counterAttack: 25
     },
 
     characterPearl: {
         name: 'Pearl',
-        health: 170,
-        attack: 6,
-        counterAttack: 15,
-        available: true
+        health: 150,
+        attack: 5,
+        counterAttack: 20
     },
 
     characterSteven: {
         name: 'Steven',
-        health: 90,
+        health: 100,
         attack: 15,
-        counterAttack: 8,
-        available: true
+        counterAttack: 5
     },
 
     numberOfRemainingOpponents: 3,
 
+    // DOM manipulation moving playable characters to the list of opponents
     transferOpponent: function(name) {
         var myChar = $('#character' + name).parent();
         myChar.detach();
         myChar.appendTo('#placeOpponentsHere');
     },
 
+    // Select a fighter
     chooseCharacter: function(name) {
         // hide character selection menu
         $('#selectACharacter').hide();
 
-        // place chosen character in stats panel
+        // DOM manipulation placing chosen character in stats panel
         var myChar = $('#character' + name);
         myChar.detach();
         myChar.appendTo('#placeYourCharacterHere');
@@ -82,7 +86,9 @@ currentGame = {
         $('#selectAnOpponent').show();
     },
 
+    // Choose the next opponent when not in battle
     chooseOpponent: function(name) {
+        // DOM manipulation moving opponent to the battlefield
         var myOpponent = $('#character' + name);
         myOpponent.parent().detach();
         myOpponent.appendTo('#currentOpponentGoesHere');
@@ -101,22 +107,31 @@ currentGame = {
         });
     },
 
+    // Lose game displaying a simple 'you lose' screen
     loseGame: function() {
         this.gameInProgress = false;
-        $('#selectOppHeader').html('<p>YOU LOSE...</p>');
+        $('#selectOppHeader').html('<p>YOU LOSE...</p>').css({
+            'font-size': '60px',
+            'color': 'red'
+        });
         $('#battleGround').hide();
     },
 
+    // Win game displaying a simple 'you win' screen
     winGame: function() {
         this.gameInProgress = false;
-        $('#selectOppHeader').html('<p>YOU WIN!</p>');
+        $('#selectOppHeader').html('<p>YOU WIN!</p>').css({
+            'font-size': '60px',
+            'color': 'purple'
+        });
         $('#battleGround').hide();
     },
 
+    // Defeat opponent: DOM manipulation removing opponent from battlefield; reset battle stats
     defeatOpponent: function(opponentName) {
         $('#currentOpponentGoesHere').empty();
 
-        // Update stats, removing defeater opponents' stats
+        // Update stats, removing defeated opponents' stats
         this.currentOpponentHealth = '';
         this.currentOpponentAttack = '';
         $('#currentOpponentHealth').html('');
@@ -131,6 +146,7 @@ currentGame = {
         // hide the attack button
         $('#buttonAttack').hide();
 
+        // update number of remaining opponents
         this.numberOfRemainingOpponents -= 1;
         console.log(this.numberOfRemainingOpponents);
 
@@ -140,6 +156,7 @@ currentGame = {
         }
     },
 
+    // One round of attacks: player attacks opponent, then opponent attacks player
     attackOpponent: function(opponentName) {
         // Player attacks. Reduce opponent's Health
         this.currentOpponentHealth = Math.max(this.currentOpponentHealth - this.currentAttack, 0);
